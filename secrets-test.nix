@@ -34,7 +34,7 @@ in {
           # TODO: This could be moved into a shell function that loads up
           # env files and wrap the actual command.
           ExecStart = ''
-            ${pkgs.bash}/bin/bash -c "SECRET=$(cat ${secret1}) ${pkgs.coreutils}/bin/echo $SECRET"'';
+            ${pkgs.bash}/bin/bash -c "export SECRET=$(${pkgs.coreutils}/bin/cat ${secret1}); ${pkgs.coreutils}/bin/echo \"secret from env: $SECRET\""'';
           DynamicUser = true;
         };
       };
